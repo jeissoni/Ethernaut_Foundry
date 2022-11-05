@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.17;
+pragma solidity 0.8.17; //se cambia por una version del compilador mas reciente
+// no afecta el comportamiento del reto
 
-import '@openzeppelin/contracts/math/SafeMath.sol';
+import '@openzeppelin/contracts/utils/math/SafeMath.sol';
 
 contract Fallback {
 
@@ -10,7 +11,7 @@ contract Fallback {
   address payable public owner;
 
   constructor() public {
-    owner = msg.sender;
+    owner = payable(msg.sender);
     contributions[msg.sender] = 1000 * (1 ether);
   }
 
@@ -26,7 +27,7 @@ contract Fallback {
     require(msg.value < 0.001 ether);
     contributions[msg.sender] += msg.value;
     if(contributions[msg.sender] > contributions[owner]) {
-      owner = msg.sender;
+      owner = payable(msg.sender);
     }
   }
 
@@ -40,6 +41,6 @@ contract Fallback {
 
   receive() external payable {
     require(msg.value > 0 && contributions[msg.sender] > 0);
-    owner = msg.sender;
+    owner = payable(msg.sender);
   }
 }
