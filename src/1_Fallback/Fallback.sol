@@ -1,16 +1,16 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.17; //se cambia por una version del compilador mas reciente
+pragma solidity ^0.8.17; //se cambia por una version del compilador mas reciente
 // no afecta el comportamiento del reto
 
-import '@openzeppelin/contracts/utils/math/SafeMath.sol';
+//import '@openzeppelin/contracts/utils/math/Math.sol';
 
 contract Fallback {
 
-  using SafeMath for uint256;
+  //using SafeMath for uint256;
   mapping(address => uint) public contributions;
   address payable public owner;
 
-  constructor() public {
+  constructor() {
     owner = payable(msg.sender);
     contributions[msg.sender] = 1000 * (1 ether);
   }

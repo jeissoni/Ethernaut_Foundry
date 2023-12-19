@@ -1,34 +1,34 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+// // SPDX-License-Identifier: MIT
+// pragma solidity ^0.8.0;
 
-import '@openzeppelin/contracts/utils/math/SafeMath.sol';
-//import "forge-std/console.sol";
+// import '@openzeppelin/contracts/utils/math/Math.sol';
+// //import "forge-std/console.sol";
 
-contract Reentrance {
+// contract Reentrance {
 
-  using SafeMath for uint256;
-  mapping(address => uint) public balances;
+//   //using SafeMath for uint256;
+//   mapping(address => uint) public balances;
 
-  function donate(address _to) public payable {
-    //console.log("sender: %s", msg.sender);
-    balances[_to] = balances[_to].add(msg.value);
-  }
+//   function donate(address _to) public payable {
+//     //console.log("sender: %s", msg.sender);
+//     balances[_to] = balances[_to].add(msg.value);
+//   }
 
-  function balanceOf(address _who) public view returns (uint balance) {
+//   function balanceOf(address _who) public view returns (uint balance) {
 
-    return balances[_who];
-  }
+//     return balances[_who];
+//   }
 
-  function withdraw(uint _amount) public {
-    if(balances[msg.sender] >= _amount) {
+//   function withdraw(uint _amount) public {
+//     if(balances[msg.sender] >= _amount) {
 
-      (bool result,) = msg.sender.call{value:_amount}("");
-      if(result) {
-        _amount;
-      }
-      balances[msg.sender] -= _amount;
-    }
-  }
+//       (bool result,) = msg.sender.call{value:_amount}("");
+//       if(result) {
+//         _amount;
+//       }
+//       balances[msg.sender] -= _amount;
+//     }
+//   }
 
-  receive() external payable {}
-}
+//   receive() external payable {}
+// }
